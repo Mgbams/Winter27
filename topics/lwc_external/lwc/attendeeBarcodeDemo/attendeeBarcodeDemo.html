@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="Attendee Check-In Pass">
+        <div class="slds-p-around_medium">
+
+            <lightning-input
+                label="Attendee Reference" value={attendeeReference} onchange={handleReferenceChange} maxlength="40">
+            </lightning-input>
+
+            <template lwc:if={loadError}>
+                <p class="slds-text-color_error slds-m-top_medium">
+                    {loadError}
+                </p>
+            </template>
+
+            <template lwc:elseif={libraryLoaded}>
+                <div class="slds-m-top_large">
+
+                    <h3 class="slds-text-heading_small">QR Code</h3>
+
+                    <div class="slds-m-top_small">
+                        <qr-code
+                            lwc:external data={attendeeReference} scale="4">
+                        </qr-code>
+                    </div>
+
+                    <h3 class="slds-text-heading_small slds-m-top_large">Code 128 Barcode</h3>
+
+                    <div class="slds-m-top_small">
+                        <code-128b
+                            lwc:external data={attendeeReference} scale="2">
+                        </code-128b>
+                    </div>
+
+                    <p class="slds-m-top_medium">
+                        Reference: {attendeeReference}
+                    </p>
+
+                </div>
+            </template>
+
+            <template lwc:else>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner
+                        alternative-text="Loading barcode library" size="small">
+                    </lightning-spinner>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
