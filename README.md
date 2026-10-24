@@ -17,6 +17,7 @@ Each topic has its own README describing the feature, implementation, prerequisi
 | Topic | Description | API Version |
 |---|---|---|
 | [Third-Party Web Components in LWC](topics/lwc-external/README.md) | Integrate an existing JavaScript Web Component library into LWC using `lwc:external`. Demonstrates dynamic QR code and barcode generation. | 68.0 |
+| [Refresh State Manager Data](topics/refresh_statemanagers_data/README.md) | Refresh State Manager Data | 68.0 |
 
 More Winter ’27 examples will be added as the project evolves.
 

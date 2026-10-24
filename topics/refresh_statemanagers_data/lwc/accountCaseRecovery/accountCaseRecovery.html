@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Account Case Recovery Desk" icon-name="standard:case">
+
+        <lightning-button
+            slot="actions"
+            label="Prioritize Aging Cases"
+            variant="brand"
+            onclick={handlePrioritize}
+            disabled={disableAction}>
+        </lightning-button>
+
+        <div class="slds-is-relative slds-var-p-around_medium">
+
+            <template lwc:if={isProcessing}>
+                <lightning-spinner
+                    alternative-text="Updating cases"
+                    size="small">
+                </lightning-spinner>
+            </template>
+
+            <template lwc:if={isLoaded}>
+                <lightning-datatable
+                    key-field="id"
+                    data={caseRecords}
+                    columns={columns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+
+            <template lwc:elseif={hasError}>
+                <p class="slds-text-color_error">
+                    Unable to load related cases.
+                </p>
+            </template>
+
+            <template lwc:else>
+                <p>Loading cases...</p>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
