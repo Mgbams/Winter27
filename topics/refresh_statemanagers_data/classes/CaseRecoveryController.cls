@@ -7,6 +7,7 @@ public with sharing class CaseRecoveryController {
 
         if (accountId == null) {
             AuraHandledException ex = new AuraHandledException('An Account Id is required.');
+            ex.setMessage('An Account Id is required.');
             throw ex;
         }
 
@@ -24,13 +25,15 @@ public with sharing class CaseRecoveryController {
             LIMIT 100
         ];
 
+        if (agingCases.isEmpty()) {
+            return 0;
+        }
+
         for (Case supportCase : agingCases) {
             supportCase.Priority = 'High';
         }
 
-        if (!agingCases.isEmpty()) {
-            update as user agingCases;
-        }
+        update as user agingCases;
 
         return agingCases.size();
     }
